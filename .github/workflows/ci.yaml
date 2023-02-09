@@ -12,7 +12,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-					ruby-version: 3.1.2
+          ruby-version: 3.1.2
 
       - name: Analyze code
         run: bundle exec rubocop
@@ -58,6 +58,6 @@ rspec:
         bundle exec rails db:structure:load
         # Se o projeto não usar nenhum dos dois
         bundle exec rails db:migrate
-
+  
   - name: Run tests
     run: bundle exec rspec spec
