@@ -1,0 +1,44 @@
+---
+AllCops:
+  TargetRubyVersion: 3.2.0
+  Exclude:
+    - config/**/*
+    - vendor/**/*
+    - log/**/*
+    - tmp/**/*
+    - db/schema.rb
+    - bin/*
+    - node_modules/**/*
+    - lib/tasks/**/*
+    - coverage/**/*
+    - .git/**/*
+    - public/**/*
+    - lib/snippets/**/*
+  NewCops: disable
+
+Layout/LineLength:
+  Exclude:
+  - db/**/*
+  - specs/**/*
+  Max: 100
+  IgnoredPatterns: ['\A#', ' # ']
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/environments/**/*'
+    - config/routes.rb
+
+Style/ClassAndModuleChildren:
+  Enabled: false
