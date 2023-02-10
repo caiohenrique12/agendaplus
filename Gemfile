@@ -35,6 +35,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+gem 'sass-rails'
+
+gem 'devise'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
@@ -56,3 +59,7 @@ group :test do
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', require: false
 end
+
+gem 'cssbundling-rails', '~> 1.1'
+
+gem 'jsbundling-rails', '~> 1.1'
