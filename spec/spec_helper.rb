@@ -23,6 +23,7 @@ end
 
 SimpleCov.start 'rails' do
   minimum_coverage 100
+  add_filter 'app/jobs/application_job.rb'
 end
 
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

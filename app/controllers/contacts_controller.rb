@@ -20,6 +20,7 @@ class ContactsController < ApplicationController
   def edit; end
 
   # POST /contacts or /contacts.json
+  # rubocop:disable Metrics/MethodLength
   def create
     @contact = Contact.new(contact_params)
 
@@ -50,6 +51,7 @@ class ContactsController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   # DELETE /contacts/1 or /contacts/1.json
   def destroy

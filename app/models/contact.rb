@@ -4,9 +4,14 @@ class Contact < ApplicationRecord
   MIN_VALID_AGE = 18.years
   MAX_VALID_AGE = 100.years
 
-  validates :cpf, :email, presence: true, uniqueness: true
-  validates :full_name, :birthday, presence: true
-  validate :birthday_is_valid?
+  before_validation :clean_cpf
+
+  validates :cpf, :email, uniqueness: true
+  validates :email, :cpf, :full_name, :birthday, presence: true
+  validates :cpf, length: { is: 11 }, format: { with: /\A\d{11}\z/ }
+  validate :birthday_is_valid?, if: proc { |attr| attr.birthday }
+
+  private
 
   def birthday_is_valid?
     return if (age >= MIN_VALID_AGE) && (age <= MAX_VALID_AGE)
@@ -14,9 +19,13 @@ class Contact < ApplicationRecord
     errors.add(:birthday, 'Error! The contact must have between 18 and 100 years old age.')
   end
 
-  private
-
   def age
     ((Date.current - birthday) / 365.25).to_i.years
+  end
+
+  def clean_cpf
+    return if cpf.nil? || cpf.empty?
+
+    self.cpf = cpf.delete('^0-9')
   end
 end

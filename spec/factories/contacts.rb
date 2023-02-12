@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :contact do
     full_name { 'Peter Parker' }
-    cpf { '255.255.255-22' }
+    cpf { '25525525522' }
     email { 'spider.man@marvel.com' }
-    birthday { 20.years.ago }
+    birthday { 20.years.ago.to_date }
   end
 end
