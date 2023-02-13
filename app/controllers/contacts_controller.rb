@@ -14,6 +14,7 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    @contact.phones.build
   end
 
   # GET /contacts/1/edit
@@ -23,7 +24,6 @@ class ContactsController < ApplicationController
   # rubocop:disable Metrics/MethodLength
   def create
     @contact = Contact.new(contact_params)
-
     respond_to do |format|
       if @contact.save
         format.html do
@@ -72,6 +72,10 @@ class ContactsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def contact_params
-    params.require(:contact).permit(:full_name, :cpf, :email, :birthday)
+    params.require(:contact).permit(:full_name,
+                                    :cpf,
+                                    :email,
+                                    :birthday,
+                                    phones_attributes: %i[number whatsapp])
   end
 end
