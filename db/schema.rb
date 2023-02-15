@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_12_215528) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_001534) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "zipcode"
+    t.string "street"
+    t.string "number"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_addresses_on_contact_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "full_name"
@@ -47,5 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_12_215528) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "contacts"
   add_foreign_key "phones", "contacts"
 end
