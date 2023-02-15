@@ -20,6 +20,9 @@ Bundler.require(*Rails.groups)
 
 module App
   class Application < Rails::Application
+    # Use the responders controller from the responders gem
+    config.app_generators.scaffold_controller :responders_controller
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
@@ -32,6 +35,9 @@ module App
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators.system_tests = nil  
+    
+    config.responders.error_status = :unprocessable_entity
+    config.responders.redirect_status = :see_other
   end
 end

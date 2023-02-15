@@ -18,6 +18,22 @@ RSpec.describe ContactsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let(:contact) { create(:contact) }
+
+    it 'assigns the requested contact to @contact' do
+      get :show, params: { id: contact.id }
+
+      expect(assigns(:contact)).to eq(contact)
+    end
+
+    it 'renders the :show template' do
+      get :show, params: { id: contact.id }
+
+      expect(response).to render_template :show
+    end
+  end
+
   describe 'GET #new' do
     it 'returns a success response' do
       get :new
@@ -76,8 +92,26 @@ RSpec.describe ContactsController, type: :controller do
       end
     end
 
+    context 'with valid params and includes phones number' do
+      it 'creates a new Contact' do
+        phone_list = {
+          phones_attributes: [{ number: '(85) 9 9999-9999', whatsapp: true },
+                              { number: '(88) 9 8888-8888', whatsapp: false }]
+        }
+
+        post :create, params: { contact: valid_attributes.merge(phone_list) }
+
+        phone_numbers_cleaned = phone_list[:phones_attributes]
+                                .pluck(:number).map { |number| number.delete('^0-9') }
+
+        expect(assigns(:contact).phones.pluck(:number)).to match(phone_numbers_cleaned)
+        expect(assigns(:contact).phones.count).to eq(2)
+        expect(assigns(:contact).phones.where(whatsapp: true).count).to eq(1)
+      end
+    end
+
     context 'with invalid params' do
-      it 'returns a erro message' do
+      it 'returns message error' do
         post :create, params: { contact: invalid_attributes }
 
         expect(assigns(:contact).errors.full_messages)
