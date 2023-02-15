@@ -63,4 +63,9 @@ RSpec.describe Contact, type: :model do
       end
     end
   end
+
+  describe 'associations' do
+    it { should have_many(:phones) }
+    it { should have_many(:addresses) }
+  end
 end

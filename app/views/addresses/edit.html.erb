@@ -1,0 +1,10 @@
+<h1>Editing address</h1>
+
+<%= render "form", address: @address %>
+
+<br>
+
+<div>
+  <%= link_to "Show this address", [@contact, @address] %> |
+  <%= link_to "Back to addresses", contact_addresses_path(@contact) %>
+</div>
