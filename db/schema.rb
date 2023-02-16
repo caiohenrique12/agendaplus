@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_001534) do
     t.string "neighborhood"
     t.string "city"
     t.string "state"
-    t.string "country"
     t.bigint "contact_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

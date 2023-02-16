@@ -78,8 +78,7 @@ RSpec.describe AddressesController, type: :controller do
         number: Faker::Address.building_number,
         neighborhood: Faker::Address.community,
         city: Faker::Address.city,
-        state: Faker::Address.state,
-        country: Faker::Address.country
+        state: Faker::Address.state
       }
     end
     let(:invalid_attributes) do
@@ -89,8 +88,7 @@ RSpec.describe AddressesController, type: :controller do
         number: Faker::Address.building_number,
         neighborhood: nil,
         city: Faker::Address.city,
-        state: Faker::Address.state,
-        country: Faker::Address.country
+        state: Faker::Address.state
       }
     end
 
@@ -127,8 +125,7 @@ RSpec.describe AddressesController, type: :controller do
         number: '123',
         neighborhood: 'New Neighborhood',
         city: 'New City',
-        state: 'New State',
-        country: 'New Country'
+        state: 'New State'
       }
     end
 
@@ -146,7 +143,6 @@ RSpec.describe AddressesController, type: :controller do
         expect(assigns(:address).neighborhood).to eq valid_attributes[:neighborhood]
         expect(assigns(:address).city).to eq valid_attributes[:city]
         expect(assigns(:address).state).to eq valid_attributes[:state]
-        expect(assigns(:address).country).to eq valid_attributes[:country]
       end
 
       it 'redirects to the address' do
