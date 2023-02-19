@@ -60,7 +60,7 @@ RSpec.describe ContactsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+  describe 'POST #create', :vcr do
     let(:valid_attributes) do
       { full_name: 'Bruce Wayne',
         email: 'bruce.wayne@dc.com',

@@ -12,6 +12,7 @@ gem 'devise', '~> 4.8.1'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'hotwire-rails'
+gem 'httparty'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'jsbundling-rails', '~> 1.1'
@@ -27,6 +28,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'debug', '~> 1.5.0', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rubocop', require: false
@@ -42,4 +44,6 @@ group :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', require: false
+  gem 'vcr'
+  gem 'webmock'
 end

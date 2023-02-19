@@ -75,6 +75,13 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.before(:each, :vcr) do |example|
+    VCR.insert_cassette example.metadata[:full_description], record: :new_episodes
+  end
+
+  config.after(:each, :vcr) do
+    VCR.eject_cassette
+  end
 end
 
 Shoulda::Matchers.configure do |config|
