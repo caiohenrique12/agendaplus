@@ -14,6 +14,12 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 require 'simplecov'
+require 'simplecov_json_formatter'
+
+SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::JSONFormatter
+])
 
 class LineFilter < SimpleCov::Filter
   def matches?(source_file)
