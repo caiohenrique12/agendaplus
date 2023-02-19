@@ -16,10 +16,8 @@
 require 'simplecov'
 require 'simplecov_json_formatter'
 
-SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
-  SimpleCov::Formatter::HTMLFormatter,
-  SimpleCov::Formatter::JSONFormatter
-])
+array_of_formaters = [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::JSONFormatter]
+SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(array_of_formaters)
 
 class LineFilter < SimpleCov::Filter
   def matches?(source_file)
