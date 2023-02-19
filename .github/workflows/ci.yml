@@ -50,4 +50,6 @@ jobs:
       - name: Create database
         run: bundle exec rails db:test:prepare
       - name: Run tests
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
         run: bundle exec rspec spec
