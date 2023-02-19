@@ -8,7 +8,6 @@ FactoryBot.define do
     neighborhood { Faker::Address.community }
     city { Faker::Address.city }
     state { Faker::Address.state }
-    country { Faker::Address.country }
     contact { create(:contact) }
   end
 end

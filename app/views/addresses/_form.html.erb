@@ -11,9 +11,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :zipcode, style: "display: block" %>
-    <%= form.text_field :zipcode %>
+  <div data-controller="zipcode">
+    <div>
+      <%= form.label :zipcode, style: "display: block" %>
+      <%= form.text_field :zipcode, { data: { action: "input->zipcode#update" } } %>
+      <p id="zipcode_error_message"></p>
+    </div>
   </div>
 
   <div>
@@ -38,12 +41,7 @@
 
   <div>
     <%= form.label :state, style: "display: block" %>
-    <%= form.text_field :state %>
-  </div>
-
-  <div>
-    <%= form.label :country, style: "display: block" %>
-    <%= form.text_field :country %>
+    <%= form.select :state, CS.states(:br).invert, { prompt: "Select a state" } %>
   </div>
 
   <div>
