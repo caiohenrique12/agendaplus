@@ -65,7 +65,7 @@ RSpec.describe Contact, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:phones) }
-    it { should have_many(:addresses) }
+    it { should have_many(:phones).dependent(:destroy) }
+    it { should have_many(:addresses).dependent(:destroy) }
   end
 end

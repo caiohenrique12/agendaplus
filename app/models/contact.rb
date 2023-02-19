@@ -11,9 +11,13 @@ class Contact < ApplicationRecord
   validates :cpf, length: { is: 11 }, format: { with: /\A\d{11}\z/ }
   validate :birthday_is_valid?, if: proc { |attr| attr.birthday }
 
-  has_many :addresses
-  has_many :phones
+  has_many :phones, dependent: :destroy
   accepts_nested_attributes_for :phones
+  has_many :addresses, dependent: :destroy
+
+  def hash_of_phones
+    phones.map { |phone| { number: phone.number, whatsapp: phone.whatsapp } }
+  end
 
   private
 

@@ -26,6 +26,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     respond_to do |format|
       if @contact.save
+        SendNotificationsForWebhook.new(contact: @contact).notify
         format.html do
           redirect_to contact_url(@contact), notice: 'Contact was successfully created.'
         end
