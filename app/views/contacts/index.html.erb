@@ -2,6 +2,13 @@
 
 <h1>Contacts</h1>
 
+<%= form_tag(contacts_path, method: :get) do %>
+  <%= label_tag(:search, "Search by name:") %>
+  <%= text_field_tag(:full_name, params[:full_name], class: "search-input", placeholder: "Enter a name") %>
+  <%= submit_tag("Search") %>
+  <%= link_to "Reset", contacts_path %>
+<% end %>
+
 <div id="contacts">
   <% @contacts.each do |contact| %>
     <%= render contact %>

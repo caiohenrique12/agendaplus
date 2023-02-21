@@ -1,6 +1,11 @@
 # frozen_string_literal: true
+require 'elasticsearch/model'
 
 class Contact < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  searchkick
+
   MIN_VALID_AGE = 18.years
   MAX_VALID_AGE = 100.years
 
