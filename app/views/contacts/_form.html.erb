@@ -13,40 +13,45 @@
 
   <div>
     <%= form.label :full_name, style: "display: block" %>
-    <%= form.text_field :full_name %>
+    <%= form.text_field :full_name, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :cpf, style: "display: block" %>
-    <%= form.text_field :cpf %>
+    <%= form.text_field :cpf, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :birthday, style: "display: block" %>
-    <%= form.date_field :birthday %>
+    <%= form.date_field :birthday, class: "form-control" %>
   </div>
-  <h4> Add Phone </h4>
+  <div class="row no-gutter mt-3">
+    <div class="col-sm-8">
+      <h4> Add Phone </h4>
+    </div>
+    <div class="col-sm-4 d-flex align-items-center justify-content-end">
+      <button type="button" id="add-phone-button" class="btn btn-primary btn-sm">Add Phone</button>
+    </div>
+  </div>
   <%= form.fields_for :phones do |phone_fields| %>
     <%= phone_fields.label :number, style: "display: block" %>
-    <%= phone_fields.text_field :number %>
+    <%= phone_fields.text_field :number, class: "form-control" %>
     <%= phone_fields.check_box :whatsapp %>
     <label>Whatsapp?</label>
     <div id="phones"></div>
-    <button type="button" id="add-phone-button">Add Phone</button>
   <% end %>
 
-  <div>
-    <%= form.submit %>
+  <div class="mt-3">
+    <%= form.submit class: "btn btn-dark" %>
   </div>
 <% end %>
 
 <script>
-  console.log("caiu aqui")
   const addPhoneButton = document.getElementById('add-phone-button');
   const phonesContainer = document.getElementById('phones');
 
@@ -54,10 +59,10 @@
     const phoneForm = document.createElement('form');
     phoneForm.innerHTML = `
       <label style="display: block" for="contact[phones_attributes][][number]">Number</label>
-      <input type="text" name="contact[phones_attributes][][number]">
+      <input type="text" name="contact[phones_attributes][][number]" class="form-control">
       <input type="checkbox" name="contact[phones_attributes][][whatsapp]">
       <label for="contact[phones_attributes][][whatsapp]">Whatsapp?</label>
-      <button type="button" id="remove-phone-button">Remove</button>
+      <button type="button" id="remove-phone-button" class="btn btn-danger btn-sm">Remove Number</button>
     `;
 
     const removePhoneButton = phoneForm.querySelector('#remove-phone-button');

@@ -1,24 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Contacts</h1>
 
-<%= form_tag(contacts_path, method: :get) do %>
-  <%= label_tag(:search, "Search by name:") %>
-  <%= text_field_tag(:full_name, params[:full_name], class: "search-input", placeholder: "Enter a name") %>
-  <%= submit_tag("Search") %>
-  <%= link_to "Reset", contacts_path %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="row no-gutters">
+        <div class="col-sm-8">
+          <h1>Contacts</h1>
+        </div>
+        <div class="col-sm-4 d-flex align-items-center justify-content-end">
+          <%= link_to "New contact", new_contact_path, class: "btn btn-dark" %>
+        </div>
+      </div>
 
-<div id="contacts">
-  <% @contacts.each do |contact| %>
-    <%= render contact %>
-    <p>
-      <%= link_to "Show this contact", contact %>
-    </p>
-    <p>
-      <%= link_to "New address", new_contact_address_path(contact) %>
-    </p>
-  <% end %>
+      <% if @contacts.any? %>
+        <%= form_tag(contacts_path, method: :get) do %>
+          <%= text_field_tag(:full_name, params[:full_name], class: "form-control form-control-lg", placeholder: "Enter a name") %>
+          <div class="mt-3">
+            <%= submit_tag "Search", class: "btn btn-light" %>
+            <%= link_to "Reset", contacts_path, class: "btn btn-link" %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div id="contacts">
+        <% @contacts.each do |contact| %>
+          <%= render contact %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New contact", new_contact_path %>
