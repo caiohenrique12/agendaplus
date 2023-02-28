@@ -20,10 +20,12 @@ RSpec.describe ContactsController, type: :controller do
       expect(assigns(:contacts)).to eq([contact])
     end
 
-    context 'when searching by name' do
+    context 'when searching by name', search: true do
       it 'return matching contacts' do
         create_list(:contact, 5)
         contact = create(:contact)
+
+        Contact.search_index.refresh
 
         get :index, params: { full_name: contact.full_name }
 
@@ -37,7 +39,7 @@ RSpec.describe ContactsController, type: :controller do
 
         get :index, params: { full_name: anything }
 
-        expect(assigns(:contacts)).to match([])
+        expect(assigns(:contacts).present?).to be_falsey
       end
     end
   end

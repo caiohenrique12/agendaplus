@@ -82,6 +82,20 @@ RSpec.configure do |config|
   config.after(:each, :vcr) do
     VCR.eject_cassette
   end
+
+  config.before(:suite) do
+    # reindex models
+    Contact.reindex
+
+    # and disable callbacks
+    Searchkick.disable_callbacks
+  end
+
+  config.around(:each, search: true) do |example|
+    Searchkick.callbacks(nil) do
+      example.run
+    end
+  end
 end
 
 Shoulda::Matchers.configure do |config|
