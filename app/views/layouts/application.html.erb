@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item">
               <% if user_signed_in? %>
-                <%= button_to "Logout", destroy_user_session_path, class: "btn btn-light", method: :delete %>
+                <%= button_to "Logout", destroy_user_session_path, class: "btn btn-light", method: :delete, data: { turbo_method: :delete }  %>
               <% else %>
                 <%= link_to "Login", new_user_session_path, class: "btn btn-light" %>
               <% end %>
@@ -33,6 +33,11 @@
         </div>
       </div>
     </nav>
-	  <%= yield %>
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success mt-3" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    <%= yield %>
   </body>
 </html>

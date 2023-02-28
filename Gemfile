@@ -16,6 +16,7 @@ gem 'httparty'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'jsbundling-rails', '~> 1.1'
+gem 'pagy', '~> 6.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
@@ -41,6 +42,7 @@ end
 
 group :test do
   gem 'database_cleaner-active_record'
+  gem 'elasticsearch-extensions'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'shoulda-matchers', '~> 5.0'

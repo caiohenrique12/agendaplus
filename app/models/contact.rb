@@ -5,6 +5,7 @@ require 'elasticsearch/model'
 class Contact < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+
   searchkick
 
   MIN_VALID_AGE = 18.years

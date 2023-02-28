@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ContactsController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_contact, only: %i[show edit update destroy]
 
   # GET /contacts or /contacts.json
@@ -10,6 +12,7 @@ class ContactsController < ApplicationController
                 else
                   Contact.all
                 end
+    @pagy, @contacts = pagy(@contacts)
   end
 
   # GET /contacts/1 or /contacts/1.json
