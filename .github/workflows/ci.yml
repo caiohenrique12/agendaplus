@@ -49,6 +49,10 @@ jobs:
           node-version: 14
       - name: Create database
         run: bundle exec rails db:test:prepare
+      - name: Install elasticsearch
+        uses: ankane/setup-elasticsearch@v1
+        with:
+          elasticsearch-version: 7.15
       - name: Run tests
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
