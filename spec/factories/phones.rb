@@ -2,8 +2,11 @@
 
 FactoryBot.define do
   factory :phone do
-    number { '(85) 9 9999-9999' }
-    whatsapp { false }
-    contact { create(:contact) }
+    number { Faker::PhoneNumber.phone_number }
+    whatsapp { [false, true].sample }
+
+    trait :with_contact do
+      contact { create(:contact) }
+    end
   end
 end

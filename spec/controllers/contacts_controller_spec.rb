@@ -8,13 +8,39 @@ RSpec.describe ContactsController, type: :controller do
   describe 'GET #index' do
     it 'returns a success response' do
       get :index
+
       expect(response).to be_successful
     end
 
     it 'assigns @contacts' do
       contact = create(:contact)
+
       get :index
+
       expect(assigns(:contacts)).to eq([contact])
+    end
+
+    context 'when searching by name', search: true do
+      it 'return matching contacts' do
+        create_list(:contact, 5)
+        contact = create(:contact)
+
+        Contact.search_index.refresh
+
+        get :index, params: { full_name: contact.full_name }
+
+        expect(assigns(:contacts)).to include(contact)
+      end
+    end
+
+    context 'when search and contact not exists' do
+      it 'returns an empty array' do
+        create_list(:contact, 5)
+
+        get :index, params: { full_name: anything }
+
+        expect(assigns(:contacts).present?).to be_falsey
+      end
     end
   end
 

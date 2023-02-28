@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 class ContactsController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_contact, only: %i[show edit update destroy]
 
   # GET /contacts or /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = if params[:full_name].present?
+                  Contact.search(params[:full_name], fields: [:full_name])
+                else
+                  Contact.all
+                end
+    @pagy, @contacts = pagy(@contacts)
   end
 
   # GET /contacts/1 or /contacts/1.json
