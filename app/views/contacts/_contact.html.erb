@@ -20,6 +20,16 @@
         <strong>Birthday:</strong>
         <%= contact.birthday %>
       </p>
+
+      <p>Numbers of Contact</p>
+      <% contact.phones.each do |phone| %>
+        <p>
+          <strong><%= phone.number %></strong>
+        </p>
+        <p>
+          <span><strong>Whatsapp?</strong> <%= phone.whatsapp? %></span>
+        </p>
+      <% end %>
     </div>
     <div class="card-footer bg-transparent">
       <div class="row no-gutters">
