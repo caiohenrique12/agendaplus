@@ -1,6 +1,6 @@
 # AgendaPlus
 
-AgendaPlus é um projeto de criação de contatos e busca, com o cadastro de contatos é possível incluir uma lista de telefones e enedereços.
+AgendaPlus é um projeto de criação de contatos e busca, com o cadastro de contatos é possível incluir uma lista de telefones e endereços.
 
 ## Stack do projeto
 
@@ -12,17 +12,17 @@ AgendaPlus é um projeto de criação de contatos e busca, com o cadastro de con
 
 ## Requirements
 
-- Docker
-- Docker Compose
+- Docker 23.0.1
+- Docker Compose 2.16
 
 ## Instalação
 
 1. Clone the repository: `git clone git@github.com:caiohenrique12/agendaplus.git`
 2. Após o download, entre na pasta do projeto: `cd agendaplus`
-3. Para fazer build do projeto: `docker-compose build`
-4. Após o build, execute o comando a seguir para criação do banco e rodar as migrações: `docker-compose run web rails db:create db:migrate`
-5. Para popular a base de dados pode rodar o seed (opicional): Primeiro suba a aplicação `docker-compose up` e em seguida `docker-compose run web bash` e por fim `rails db:seed`.
-6. E por fim para inciar a aplicação execute: `docker-compose up`
+3. Para fazer build do projeto: `docker compose build`
+4. Após o build, execute o comando a seguir para criação do banco e rodar as migrações: `docker compose run web rails db:create db:migrate`
+5. Para popular a base de dados pode rodar o seed (opicional): Primeiro suba a aplicação `docker compose up` e em seguida `docker compose run web bash` e por fim `rails db:seed`.
+6. E por fim para inciar a aplicação execute: `docker compose up`
 
 ## Aplicação
 
@@ -30,7 +30,7 @@ Se tudo ocorrer bem, insira essa url no seu navegador para entrar na aplicação
 
 ## Testes
 
-Para executar os testes, vai ser necessário o seguinte comando: `docker-compose run web rspec` ou se preferir execute: `docker-compose run web bash` e depois `rspec`
+Para executar os testes, vai ser necessário o seguinte comando: `docker compose run web rspec` ou se preferir execute: `docker compose run web bash` e depois `rspec`
 
 As seguintes gemas foram utilizadas para compor a stack de testes:
 
